@@ -6,7 +6,7 @@ use App\Http\Requests\StoreStatusRequest;
 use App\Http\Requests\UpdateStatusRequest;
 use App\Models\Status;
 use Inertia\Inertia;
-
+use Illuminate\Support\Facades\Auth;
 
 class StatusController extends Controller
 {
@@ -15,11 +15,18 @@ class StatusController extends Controller
      */
     public function index()
     {
-        $statuses = Status::get();
-        // dd($statuses);
-        return Inertia::render('Saving_List', [
-            'statuses' => Status::all(),
-        ]);
+        //ユーザー名の取得
+        $user = Auth::user();
+        $username = $user->name;
+        // 現在認証しているユーザーのIDを取得
+        $id = Auth::id();
+        $statuses = Status::all();
+
+        return Inertia::render('Saving_List', compact(
+            'statuses',
+            'username',
+            'id'
+        ));
     }
 
     /**
@@ -62,9 +69,7 @@ class StatusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Status $status)
-    {
-    }
+    public function show(Status $status) {}
 
     /**
      * Show the form for editing the specified resource.

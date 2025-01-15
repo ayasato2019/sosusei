@@ -13,7 +13,7 @@ import { StatusTypes } from '@/types/tableStatusData'
 import { HistoryTypes } from '@/types/tableHistoryData'
 import { SavingTypes } from '@/types/tableSavingData'
 
-export default function Home({
+export default function Saving_List({
     // savings,
     // history
 }: {
@@ -22,11 +22,23 @@ export default function Home({
         // history: HistoryTypes[];
     }) {
     // Laravel から渡されたデータを取得
-    const { statuses } = usePage().props as { statuses?: StatusTypes[] };
-    const status = statuses?.[0] ?? null;
-    if (!status) {
-        return <div>データがありません</div>;
-    }
+// Laravel から渡されたデータを取得
+const { statuses, username: rawUsername, id: rawId } = usePage().props as {
+    statuses?: StatusTypes[],
+    username?: string,
+    id?: number
+};
+
+// 必須データがない場合に早期リターン
+if (!statuses || !rawUsername || !rawId) {
+    return <div>データが不足しています</div>;
+}
+
+// データのマッピング
+const status = statuses[rawId] ?? null;
+if (!status) {
+    return <div>データがありません</div>;
+}
     const userSaving: number = status.saving;
     const userInvestment: number = status.investment;
     const userEssential: number = status.essential;
@@ -72,8 +84,8 @@ export default function Home({
     // }
 
     const userDataAfter = {
-        id: 1,
-        name: user,
+        id: rawId,
+        name: rawUsername,
         savings: userSaving,
         investment: userInvestment,
         essential: userEssential,
