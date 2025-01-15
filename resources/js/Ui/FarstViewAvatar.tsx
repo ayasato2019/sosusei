@@ -13,10 +13,6 @@ export default function FarstView({
     category: 0 | 1 | 2 | 3 | 4 | 5;
 
 }) {
-    // savings: number; //貯金の合計金額
-    // investment: number; //投資の合計金額
-    // essential: number; //必要
-    // extravagance: number; //欲しい結果
 
     const categoryColor = {
         0: 'primary',

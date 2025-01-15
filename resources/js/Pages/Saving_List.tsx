@@ -84,12 +84,7 @@ export default function Home({
 
     const userDataAfter = {
         id: 1,
-        user_id: 1,
         name: "まもる",
-        birth_date: '20160809', // ISO 8601形式の日付文字列
-        is_admin: true,
-        email: "test@test.com", // メールアドレスは親ユーザーのみ
-        phone_number: "00000000000", // 電話番号は親ユーザーのみ
         savings: userSaving,
         investment: userInvestment,
         essential: userEssential,
