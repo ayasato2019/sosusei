@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('goal_level');
             $table->string('goal_images');
             $table->boolean('is_shared');
-            $table->text('memo');
+            $table->text('memo')->nullable();
             $table->timestamps();
         });
     }

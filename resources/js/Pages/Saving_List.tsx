@@ -9,31 +9,20 @@ import TopSaving from '@/Ui/TopSaving'
 
 // 型チェック
 import { UserTypes } from '@/types/tableUserData'
+import { StatusTypes } from '@/types/tableStatusData'
 import { HistoryTypes } from '@/types/tableHistoryData'
 import { SavingTypes } from '@/types/tableSavingData'
-interface Status {
-    id: number,
-    updated_at: string,
-    created_at: string,
-    saving: number;
-    investment: number;
-    essential: number;
-    extravagance: number;
-    donation: number;
-}
+
 export default function Home({
-    // // isFirstAccess,
-    // user,
     // savings,
     // history
 }: {
         // isFirstAccess: boolean = false,
-        // user: UserTypes;
         // savings: SavingTypes[];
         // history: HistoryTypes[];
     }) {
     // Laravel から渡されたデータを取得
-    const { statuses } = usePage().props as { statuses?: Status[] };
+    const { statuses } = usePage().props as { statuses?: StatusTypes[] };
     const status = statuses?.[0] ?? null;
     if (!status) {
         return <div>データがありません</div>;
@@ -84,7 +73,7 @@ export default function Home({
 
     const userDataAfter = {
         id: 1,
-        name: "まもる",
+        name: user,
         savings: userSaving,
         investment: userInvestment,
         essential: userEssential,

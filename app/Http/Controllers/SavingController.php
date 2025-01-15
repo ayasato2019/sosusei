@@ -28,7 +28,7 @@ class SavingController extends Controller
      */
     public function store(StoreSavingRequest $request)
     {
-        // dd($request);
+        dd($request);
         // ファイルが送信されている場合は、保存処理
         // if ($request->hasFile('goal_images')) {
         //     $path = $request->file('goal_images')->store('public/goal_images');
