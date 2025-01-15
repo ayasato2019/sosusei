@@ -29,7 +29,7 @@ Route::post('/confirm', [StatusController::class, 'store'])->name('confirm');
 
 //目標の登録
 Route::get('/goal-registration', [SavingController::class, 'create'])->name('Saving_Goal_Create');
-Route::post('/goal-confirm', [SavingController::class, 'store'])->name('Saving_Goal_confirm');
+Route::post('/goal-confirm', [SavingController::class, 'store'])->name('goal-confirm');
 
 
 

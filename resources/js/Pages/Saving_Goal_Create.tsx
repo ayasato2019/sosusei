@@ -14,7 +14,7 @@ export default function Saving_Goal_Create({
         goal_amount: 0,
         goal_date: "2025-01-31",
         goal_level: 1,
-        goal_images: "https://borderlesss.sakura.ne.jp/ss1/assets/images/photo-noimages.jpg",
+        goal_images: "",
         is_shared: false,
         memo: "",
     });

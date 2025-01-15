@@ -48,6 +48,7 @@ export default function Welcome({
                                         value={formData.savingValue}
                                         onChange={(e) => handleChange('savingValue', e.target.value)}
                                         className="w-full mt-1 text-black placeholder:italic placeholder:text-darkgray focus:outline-2 focus:outline-purple"
+                                        max="10000000000"
                                     />
                                 </label>
                                 <label className="flex items-center justify-between gap-1">
@@ -57,6 +58,7 @@ export default function Welcome({
                                         value={formData.investmentValue}
                                         onChange={(e) => handleChange('investmentValue', e.target.value)}
                                         className="w-full mt-1 text-black placeholder:italic placeholder:text-darkgray focus:outline-2 focus:outline-purple"
+                                        max="10000000000"
                                     />
                                 </label>
                                 <label className="flex items-center justify-between gap-1">
@@ -66,6 +68,7 @@ export default function Welcome({
                                         value={formData.essentialValue}
                                         onChange={(e) => handleChange('essentialValue', e.target.value)}
                                         className="w-full mt-1 text-black placeholder:italic placeholder:text-darkgray focus:outline-2 focus:outline-purple"
+                                        max="10000000000"
                                     />
                                 </label>
                                 <label className="flex items-center justify-between gap-1">
@@ -75,6 +78,7 @@ export default function Welcome({
                                         value={formData.extravaganceValue}
                                         onChange={(e) => handleChange('extravaganceValue', e.target.value)}
                                         className="w-full mt-1 text-black placeholder:italic placeholder:text-darkgray focus:outline-2 focus:outline-purple"
+                                        max="10000000000"
                                     />
                                 </label>
                                 <label className="flex items-center justify-between gap-1">
@@ -84,6 +88,7 @@ export default function Welcome({
                                         value={formData.donationValue}
                                         onChange={(e) => handleChange('donationValue', e.target.value)}
                                         className="w-full mt-1 text-black placeholder:italic placeholder:text-darkgray focus:outline-2 focus:outline-purple"
+                                        max="10000000000"
                                     />
                                 </label>
                                 <div className="mx-auto mt-5">

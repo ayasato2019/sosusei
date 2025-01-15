@@ -43,8 +43,7 @@ class SavingController extends Controller
         $saving->goal_amount = $request->goal_amount;
         $saving->goal_date = $request->goal_date;
         $saving->goal_level = $request->goal_level;
-        $saving->goal_images = $request->goal_images;
-        // $saving->goal_images = $path; // ファイルパスを保存
+        $saving->goal_images = $request->goal_images ?: "https://borderlesss.sakura.ne.jp/ss1/assets/images/photo-noimages.jpg";
         $saving->memo = $request->memo;
         $saving->is_shared = $request->input('is_shared', false); // is_sharedがnullの場合はfalse
 

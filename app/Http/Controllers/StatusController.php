@@ -17,8 +17,8 @@ class StatusController extends Controller
     {
         $statuses = Status::get();
         // dd($statuses);
-        return Inertia::render('Saving_List', [
-            'statuses' => $statuses
+        return redirect()->route('Saving_List',[
+        'statuses' => $statuses
         ]);
     }
 
