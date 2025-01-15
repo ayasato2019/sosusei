@@ -14,15 +14,16 @@ return new class extends Migration
         Schema::create('savings', function (Blueprint $table) {
             $table->id('saving_id');
             $table->foreignId('user_id')->constrained('users');
-            $table->integer('comment_id');
-            $table->integer('goal_group_id');
+            // $table->unsignedBigInteger('comment_id');
+            $table->unsignedBigInteger('comment_id')->nullable()->change();
+            $table->unsignedBigInteger('goal_group_id')->default(1); // 初期値1
             $table->string('goal_name');
-            $table->integer('goal_amount');
+            $table->decimal('goal_amount', 15, 2); // 金額は通常小数点を含む
             $table->date('goal_date');
-            $table->integer('goal_level');
+            $table->unsignedInteger('goal_level'); // 数値フィールド
             $table->string('goal_images');
-            $table->boolean('is_shared');
-            $table->text('memo')->nullable();
+            $table->boolean('is_shared')->default(false); // デフォルトはfalse
+            $table->text('memo')->nullable(); // 任意のメモフィールド
             $table->timestamps();
         });
     }

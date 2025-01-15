@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, usePage } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import FarstView from '@/Ui/FarstViewAvatar'
 import ButtonPrimary from '@/Components/ButtonPrimary';
 import TitleSection from '@/Components/TitleSection';
@@ -13,32 +13,24 @@ import { StatusTypes } from '@/types/tableStatusData'
 import { HistoryTypes } from '@/types/tableHistoryData'
 import { SavingTypes } from '@/types/tableSavingData'
 
-export default function Saving_List({
-    // savings,
-    // history
-}: {
-        // isFirstAccess: boolean = false,
-        // savings: SavingTypes[];
-        // history: HistoryTypes[];
-    }) {
-    // Laravel から渡されたデータを取得
-// Laravel から渡されたデータを取得
-const { statuses, username: rawUsername, id: rawId } = usePage().props as {
-    statuses?: StatusTypes[],
-    username?: string,
-    id?: number
-};
+export default function Saving_List() {
+    const user = usePage().props.auth.user;
+    const $userData = usePage().props as {
+        $userData?: string[],
+    };
+    const { statuses } = usePage().props as {
+        statuses?: StatusTypes[],
+    };
 
-// 必須データがない場合に早期リターン
-if (!statuses || !rawUsername || !rawId) {
-    return <div>データが不足しています</div>;
-}
+    const status = statuses?.[user.id] ?? null;
 
-// データのマッピング
-const status = statuses[rawId] ?? null;
-if (!status) {
-    return <div>データがありません</div>;
-}
+    if (!status) {
+        return (
+            <div>
+                <p>ステータスが見つかりません。</p>
+            </div>
+        );
+    }
     const userSaving: number = status.saving;
     const userInvestment: number = status.investment;
     const userEssential: number = status.essential;
@@ -84,8 +76,8 @@ if (!status) {
     // }
 
     const userDataAfter = {
-        id: rawId,
-        name: rawUsername,
+        id: user.id,
+        name: user.name,
         savings: userSaving,
         investment: userInvestment,
         essential: userEssential,
@@ -98,33 +90,36 @@ if (!status) {
     const userAvatar: string = userDataAfter.avatar;
 
     return (
-        <div className='overflow-hidden flex items-center justify-center w-full h-full'>
-            <div className='contents_box overflow-auto flex flex-col gap-5 pb-5 w-full md:max-w-[64vmin] h-screen md:border-solid border-0 md:border-8 md:border-black md:rounded-2xl '>
+        <>
+            <Head title="ユーザーぺーじ" />
+            <div className='overflow-hidden flex items-center justify-center w-full h-full'>
+                <div className='contents_box overflow-auto flex flex-col gap-5 pb-5 w-full md:max-w-[64vmin] h-screen md:border-solid border-0 md:border-8 md:border-black md:rounded-2xl '>
 
-                <div className="flex flex-col gap-8">
-                    <FarstView
-                        UserData={userDataAfter}
-                        category={0}
-                        fvImages={userAvatar} />
-                    <section className='py-5 md:py-10 px-2'>
-                        <TitleSection category='Savings' num={1} />
-                        {/* <TopSaving
+                    <div className="flex flex-col gap-8">
+                        <FarstView
+                            UserData={userDataAfter}
+                            category={0}
+                            fvImages={userAvatar} />
+                        <section className='py-5 md:py-10 px-2'>
+                            <TitleSection category='Savings' num={1} />
+                            {/* <TopSaving
                             num={savingsCount}
                             listData={savings}
                             historyData={history}
                             childPage={false}
                         /> */}
-                        <Link
-                        href="/goal-registration"
-                            className='flex items-center justify-center rounded-md border border-transparent bg-gradation min-w-32 max-w-52 px-4 py-2 max-h-10 text-sm font-bold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gradation-blue focus:bg-gradation focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 active:bg-gradation icon-plus mx-auto mt-5 gap-2'>
-                            もくひょうをついか
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width={12} height={12}>
-                                <path fill='#FFF' d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
-                            </svg>
-                        </Link>
-                    </section>
+                            <Link
+                                href="/goal-registration"
+                                className='flex items-center justify-center rounded-md border border-transparent bg-gradation min-w-32 max-w-52 px-4 py-2 max-h-10 text-sm font-bold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gradation-blue focus:bg-gradation focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 active:bg-gradation icon-plus mx-auto mt-5 gap-2'>
+                                もくひょうをついか
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width={12} height={12}>
+                                    <path fill='#FFF' d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+                                </svg>
+                            </Link>
+                        </section>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

@@ -43,6 +43,7 @@ export default function Saving_Goal_Create({
                         <form method='POST' action='/goal-confirm'>
                             <input type="hidden" name="_token" value={csrfToken.current} />
                             <input type="hidden" name="goal_level" value={1} />
+                            <input type="hidden" name="goal_level" value={1} />
                             <div className="flex flex-col gap-5 p-5">
                                 <TitleModal title="もくひょうを 立てよう！" />
                                 <div>
@@ -54,6 +55,7 @@ export default function Saving_Goal_Create({
                                             placeholder="(れい) 宇宙飛行士になりたい"
                                             onChange={(e) => handleChange('goal_name', e.target.value)}
                                             className="w-full mt-1 text-black placeholder:italic placeholder:text-darkgray focus:outline-2 focus:outline-purple"
+                                            required
                                         />
                                     </label>
                                 </div>
@@ -65,7 +67,8 @@ export default function Saving_Goal_Create({
                                         value={formData.goal_date}
                                         onChange={(e) => handleChange('goal_date', e.target.value)}
                                         className="w-full mt-1 text-black placeholder:italic placeholder:text-darkgray focus:outline-2 focus:outline-purple"
-                                    />
+                                        required
+                                        />
                                 </div>
 
                                 <div className="flex flex-col items-center justify-between gap-1">
@@ -75,7 +78,8 @@ export default function Saving_Goal_Create({
                                         value={formData.goal_amount}
                                         onChange={(e) => handleChange('goal_amount', e.target.value)}
                                         className="w-full mt-1 text-black placeholder:italic placeholder:text-darkgray focus:outline-2 focus:outline-purple"
-                                    />
+                                        required
+                                        />
                                 </div>
 
                                 <div>

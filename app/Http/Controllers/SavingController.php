@@ -28,7 +28,7 @@ class SavingController extends Controller
      */
     public function store(StoreSavingRequest $request)
     {
-        dd($request);
+        // dd($request);
         // ファイルが送信されている場合は、保存処理
         // if ($request->hasFile('goal_images')) {
         //     $path = $request->file('goal_images')->store('public/goal_images');
@@ -39,6 +39,7 @@ class SavingController extends Controller
         // Saving モデルにデータを保存
         $saving = new Saving();
         $saving->user_id = Auth::id();
+        $saving->comment_id = $request->comment_id ?? null;
         $saving->goal_name = $request->goal_name;
         $saving->goal_amount = $request->goal_amount;
         $saving->goal_date = $request->goal_date;
@@ -50,9 +51,7 @@ class SavingController extends Controller
         // データベースに保存
         $saving->save();
 
-        return Inertia::render('Saving_List', [
-            'saving' => Saving::all(),
-        ]);
+        return redirect()->route('Saving_List');
     }
 
     /**

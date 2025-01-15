@@ -11,26 +11,22 @@ use Illuminate\Support\Facades\Auth;
 class StatusController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * ユーザー情報をまとめてとる
      */
     public function index()
     {
-        //ユーザー名の取得
-        $user = Auth::user();
-        $username = $user->name;
         // 現在認証しているユーザーのIDを取得
         $id = Auth::id();
-        $statuses = Status::all();
-
+        // user_idをキーにした連想配列に変換
+        $statuses = Status::where('user_id', $id)->get()->keyBy('user_id');        // dd($statuses);
         return Inertia::render('Saving_List', compact(
             'statuses',
-            'username',
             'id'
         ));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 見るだけ
      */
     public function create()
     {
@@ -38,7 +34,7 @@ class StatusController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * ステータスの登録　リダイレクト先に注意
      */
     public function store(StoreStatusRequest $request)
     {
@@ -51,6 +47,7 @@ class StatusController extends Controller
         ]);
 
         $statuses = new Status();
+        $statuses->user_id = Auth::id();
         $statuses->saving = $validated['saving'];
         $statuses->investment = $validated['investment'];
         $statuses->essential = $validated['essential'];
@@ -60,9 +57,9 @@ class StatusController extends Controller
         // データベースに保存
         $statuses->save();
 
-        return Inertia::render('Saving_List', [
-            'statuses' => Status::all(),
-        ]);
+        // return Inertia::render('Saving_List', [
+        //     'statuses' => Status::all(),
+        // ]);
         return redirect()->route('Saving_List');
     }
 
