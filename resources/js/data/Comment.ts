@@ -1,0 +1,22 @@
+export const inputComment = [
+    { "comment_id": 1, "goal_group_id": 10, "level": 1, "user_id": 1, "comment_text": "この貯金目標、達成できる気がしないけど、がんばります！", "created_at": "2025-01-07T10:00:00Z", "category": 100 },
+    { "comment_id": 2, "goal_group_id": 12, "level": 2, "user_id": 1, "comment_text": "投資の結果、少しでも増えているといいなと思ってます。", "created_at": "2025-01-07T10:05:00Z", "category": 100 },
+    { "comment_id": 3, "goal_group_id": 10, "level": 3, "user_id": 1, "comment_text": "家計の支出を見直したいですね。", "created_at": "2025-01-07T10:10:00Z", "category": 3 },
+    { "comment_id": 4, "goal_group_id": 12, "level": 4, "user_id": 1, "comment_text": "無駄遣いを減らさないと、将来が不安…。", "created_at": "2025-01-07T10:15:00Z", "category": 4 },
+    { "comment_id": 5, "goal_group_id": 10, "level": 1, "user_id": 1, "comment_text": "少しずつ積立をしていく予定です。目標額はまだ遠いけど。", "created_at": "2025-01-07T10:20:00Z", "category": 2 },
+    { "comment_id": 6, "goal_group_id": 12, "level": 5, "user_id": 1, "comment_text": "毎月少しでも寄付できるようにしたい。", "created_at": "2025-01-07T10:25:00Z", "category": 1 },
+    { "comment_id": 7, "goal_group_id": 10, "level": 3, "user_id": 1, "comment_text": "固定費が高いから、少しでも削減したい…。", "created_at": "2025-01-07T10:30:00Z", "category": 1 },
+    { "comment_id": 8, "goal_group_id": 12, "level": 2, "user_id": 1, "comment_text": "投資を始めてみたけど、まだ結果が見えない…。", "created_at": "2025-01-07T10:35:00Z", "category": 1 },
+    { "comment_id": 9, "goal_group_id": 10, "level": 1, "user_id": 1, "comment_text": "貯金の目標が達成できたら、少し贅沢したいな。", "created_at": "2025-01-07T10:40:00Z", "category": 1 },
+    { "comment_id": 10, "goal_group_id": 12, "level": 4, "user_id": 1, "comment_text": "今月もつい無駄遣いしてしまった…。反省。", "created_at": "2025-01-07T10:45:00Z", "category": 1 },
+    { "comment_id": 11, "goal_group_id": 10, "level": 1, "user_id": 1, "comment_text": "毎月少しずつ貯めて、目標達成を目指します！", "created_at": "2025-01-07T10:50:00Z", "category": 1 },
+    { "comment_id": 12, "goal_group_id": 12, "level": 3, "user_id": 1, "comment_text": "生活費が足りなくなってきたので、今後の計画を見直さないと。", "created_at": "2025-01-07T10:55:00Z", "category": 1 },
+    { "comment_id": 13, "goal_group_id": 10, "level": 2, "user_id": 1, "comment_text": "もっと投資について学んでいきたい。どうしたらいいのか悩んでる。", "created_at": "2025-01-07T11:00:00Z", "category": 1 },
+    { "comment_id": 14, "goal_group_id": 12, "level": 4, "user_id": 1, "comment_text": "無駄遣いを減らして、もう少しお金を貯めないと。", "created_at": "2025-01-07T11:05:00Z", "category": 2 },
+    { "comment_id": 15, "goal_group_id": 10, "level": 5, "user_id": 1, "comment_text": "少しでも社会貢献できるように、今月から寄付を始めました。", "created_at": "2025-01-07T11:10:00Z", "category": 1 },
+    { "comment_id": 16, "goal_group_id": 12, "level": 1, "user_id": 1, "comment_text": "貯金は地道に続けるしかない！コツコツが大事。", "created_at": "2025-01-07T11:15:00Z", "category": 5 },
+    { "comment_id": 17, "goal_group_id": 10, "level": 2, "user_id": 1, "comment_text": "投資に関してもっと知識を深めないと、怖くて手が出せない。", "created_at": "2025-01-07T11:20:00Z", "category": 4 },
+    { "comment_id": 18, "goal_group_id": 12, "level": 3, "user_id": 1, "comment_text": "家計簿をつけて、必要な支出と無駄な支出を区別したい。", "created_at": "2025-01-07T11:25:00Z", "category": 4 },
+    { "comment_id": 19, "goal_group_id": 10, "level": 5, "user_id": 1, "comment_text": "少しずつでも寄付を続けていけたらいいなと思っています。", "created_at": "2025-01-07T11:30:00Z", "category": 5 },
+    { "comment_id": 20, "goal_group_id": 12, "level": 4, "user_id": 1, "comment_text": "無駄遣いを減らして、もっと貯金に回すべきだなと感じました。", "created_at": "2025-01-07T11:35:00Z", "category": 5 }
+]

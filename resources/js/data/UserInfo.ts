@@ -1,0 +1,17 @@
+export const user = {
+    donation: 20,
+    level: 2,
+    useName: "まもる",
+    savings: 3000,
+    investment: 2000,
+    essential: 200,
+    extravagance: 300,
+    plannedExtravagance: 300,
+    user_id: 1,
+    name: "まもる",
+    birth_date: "2011-01-01",
+    is_admin: false,
+    email: "mamoru@example.com",
+    phone_number: "080-1234-5678",
+    avatar: "",
+};
