@@ -35,14 +35,18 @@ Route::middleware('auth')->group(function () {
     //詳細ぺーじ
     Route::get('/{id}', [SavingController::class, 'show'])->name('saving.show');
     Route::post('/update', [HistoryController::class, 'store'])->name('update');
-    //元々あるやつ
+});
+
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    // パスワード忘れ
+    Route::get('/forget')->name('index');
+    // プロフィール管理
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/dashboard', fn() => Inertia::render('Dashboard'))->name('dashboard');
 });
-
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 require __DIR__.'/auth.php';
