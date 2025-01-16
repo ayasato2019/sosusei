@@ -73,12 +73,19 @@ export default function SavingId() {
     const userExtravagance: number = status.extravagance;
     const userDonation: number = status.donation;
 
-    // 積立額の計算
-    const calculateTotalSavings = (savingsId: number, history: HistoryTypes[], goalLevel: number): number => {
-        return histories
-            .map((history) => parseFloat(String(history.amount_saved)))
-            .reduce((total, amount) => total + amount, 0);
-    };
+    // // 積立額の計算
+    // const calculateTotalSavings = (savingsId: number, history: HistoryTypes[], goalLevel: number): number => {
+    //     return histories
+    //         .map((history) => parseFloat(String(history.amount_saved)))
+    //         .reduce((total, amount) => total + amount, 0);
+    // };
+// 積立額の計算
+const calculateTotalSavings = (savingsId: number, histories: HistoryTypes[], goalGroupId: number): number => {
+    return histories
+    .filter((history) => history.goal_group_id === savingsId) // goal_group_id でフィルタリング
+    .map((history) => parseFloat(String(history.amount_saved))) // amount_saved を数値に変換
+    .reduce((total, amount) => total + amount, 0); // 合計を計算
+};
 
     // 必要なstateとuseEffectの配置
     const [currentPrice, setCurrentPrice] = useState<number>(0);
@@ -91,7 +98,7 @@ export default function SavingId() {
 
     // 状態管理
     const [statusBarAmount, setStatusBarAmount] = useState<number>(
-        calculateTotalSavings(saving.goal_group_id, histories, saving.goal_level)
+        calculateTotalSavings(saving.saving_id, histories, saving.goal_level)
     );
 
     const handleSave = (newAmount: number) => {
@@ -124,6 +131,7 @@ export default function SavingId() {
     //送信関係
     const metaCsrfToken = document.querySelector("meta[name='csrf-token']") as HTMLMetaElement;
     const csrfToken = useRef<string>(metaCsrfToken.content);
+
     const today = new Date().toISOString().split('T')[0];
 
     return (
@@ -150,7 +158,7 @@ export default function SavingId() {
                                     <input type="hidden" name="_token" value={csrfToken.current} />
                                     <input type="hidden" name="user_id" value={user.id} />
                                     <input type="hidden" name="category" value={1} />
-                                    <input type="hidden" name="goal_group_id" value={saving.goal_group_id} />
+                                    <input type="hidden" name="saving_id" value={saving.saving_id} />
                                     <input type="hidden" name="date_saved" value={today} />
 
                                     <div className='relative w-full h-auto mt-2'>
@@ -176,6 +184,11 @@ export default function SavingId() {
                                         onSave={handleSave}
                                     />
                                 </form>
+                                <Link
+                                href='/userpage'
+                                className='flex items-center justify-center rounded-md border border-transparent bg-gradation min-w-32 max-w-52 mt-10 mx-auto px-4 py-2 max-h-10 text-sm font-bold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gradation-blue focus:bg-gradation focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 active:bg-gradation'>
+                                ユーザーページ
+                            </Link>
                             </div>
                         </li>
                     </ul>

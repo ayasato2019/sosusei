@@ -6,6 +6,7 @@ use App\Http\Requests\StoreHistoryRequest;
 use App\Http\Requests\UpdateHistoryRequest;
 use App\Models\History;
 use App\Models\Saving;
+use Illuminate\Support\Facades\Auth;
 
 class HistoryController extends Controller
 {
@@ -39,6 +40,9 @@ class HistoryController extends Controller
             'amount_saved' => 'required|numeric',
         ]);
 
+        // $id = Auth::id();
+        // $savings = Saving::where('user_id', $id)->get();
+
         // 新しい履歴を作成
         $history = new History();
         $history->user_id = $request->user_id;
@@ -49,10 +53,10 @@ class HistoryController extends Controller
         $history->memo = $request->memo ?? null; // メモがあれば保存
         $history->is_shared = $request->is_shared ?? false; // 共有設定があれば保存
         $history->created_at = now(); // 作成日時をセット
-        $history->save(); // 履歴を保存
         dd($history);
+        $history->save(); // 履歴を保存
         // 成功したらリダイレクト
-        return redirect()->route('Saving_Id')->with('success', '履歴が登録されました。');
+        return redirect()->route('saving.show', ['id' => $request->goal_group_id])->with('success', '履歴が登録されました。');
     }
 
     /**

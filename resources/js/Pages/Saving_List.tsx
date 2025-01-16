@@ -39,6 +39,7 @@ export default function Saving_List() {
         );
     }
 
+
     const saving = savings.filter((saving) => saving.user_id === user.id);
     const history = histories.filter((history) => history.user_id === user.id);
     // もしも履歴がゼロだったら
@@ -89,16 +90,11 @@ export default function Saving_List() {
                             {
                                 savings.map((savingItem) => (
                                     <div key={savingItem.saving_id} className='mt-5'>
-                                        <Link href={`/${savingItem.saving_id}`}>
+                                        <Link
+                                            href={`/${savingItem.saving_id}`}
+                                            className=''>
                                             {savingItem.goal_name}
                                         </Link>
-                                        {historiesCount > 0 && (
-                                            <ul>
-                                                <li>最新貯金履歴</li>
-                                                <li>貯金回数{historiesCount}回！がんばれ！</li>
-                                                {/* <li>貯金額: {history.amount_saved}円</li> */}
-                                            </ul>
-                                        )}
                                     </div>
                                 ))
                             }

@@ -43,10 +43,11 @@ class SavingController extends Controller
         $saving->user_id = Auth::id();
         $saving->comment_id = $request->comment_id ?? null;
         $saving->goal_name = $request->goal_name;
+        // $saving->goal_group_id = $request->goal_group_id;
         $saving->goal_amount = $request->goal_amount;
         $saving->goal_date = $request->goal_date;
         $saving->goal_level = $request->goal_level;
-        $saving->goal_images = $request->goal_images ?: "https://borderlesss.sakura.ne.jp/ss1/assets/images/photo-noimages.jpg";
+        $saving->goal_images = $request->goal_images ?: "";
         $saving->memo = $request->memo;
         $saving->is_shared = $request->input('is_shared', false); // is_sharedがnullの場合はfalse
 
