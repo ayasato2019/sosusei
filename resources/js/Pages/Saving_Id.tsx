@@ -48,7 +48,6 @@ export default function SavingId() {
     // savingsがオブジェクトでそのまま渡されている場合
 
     const savingsArray = savings ? Object.values(savings) : [];
-    // console.log(JSON.stringify('配列変換前'+savings,null,'\t'));
     console.log(JSON.stringify('配列変換後'+savingsArray,null,'\t'));
     const saving: SavingTypes = {
         saving_id: Number(savingsArray[0]),
@@ -63,6 +62,7 @@ export default function SavingId() {
         is_shared: Boolean(savingsArray[9]),
         memo: String(savingsArray[10]),
     };
+    console.log(JSON.stringify('型の再宣言'+saving,null,'\t'));
 
     // 履歴の確認
     const { histories } = usePage().props as {
