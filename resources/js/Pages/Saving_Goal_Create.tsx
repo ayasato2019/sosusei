@@ -81,7 +81,7 @@ export default function Saving_Goal_Create({
                                         />
                                 </div>
 
-                                <div>
+                                {/* <div>
                                     <label className="flex flex-col items-center justify-between gap-1">
                                         <span>イメージ がぞうを せってい しよう</span>
                                         <input
@@ -91,7 +91,7 @@ export default function Saving_Goal_Create({
                                             onChange={(e) => handleChange('goal_images', e.target.value)}
                                             />
                                     </label>
-                                </div>
+                                </div> */}
 
                                 <div>
                                     <label className="flex flex-col items-center justify-between gap-1">

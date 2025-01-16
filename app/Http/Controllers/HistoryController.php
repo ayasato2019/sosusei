@@ -54,7 +54,10 @@ class HistoryController extends Controller
         $history->memo = $request->memo ?? null; // メモがあれば保存
         $history->is_shared = $request->is_shared ?? false; // 共有設定があれば保存
         $history->created_at = now(); // 作成日時をセット
-        $history->save(); // 履歴を保存
+
+        if($request->amount_saved != 0) {
+            $history->save(); // 履歴を保存
+        }
         // 成功したらリダイレクト
         return redirect()->route('saving.show', ['id' => $request->goal_group_id])
         ->with('success', '履歴が登録されました。');

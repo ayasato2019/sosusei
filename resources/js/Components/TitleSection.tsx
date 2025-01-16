@@ -16,7 +16,7 @@ export default function TitleModal({
         'Waste': 'ほしい',
         'Expense': 'ひつよう',
         'Investment': 'とうし',
-        'Savings': 'ちょきん',
+        'Savings': 'ちょきん もくひょう',
     };
 
     // カテゴリに応じたメッセージを取得する関数
