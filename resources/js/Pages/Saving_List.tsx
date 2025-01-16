@@ -91,7 +91,7 @@ export default function Saving_List() {
                                 savings.map((savingItem) => (
                                     <div key={savingItem.saving_id} className='mt-5'>
                                         <Link
-                                            href={`/${savingItem.saving_id}`}
+                                            href={`./${savingItem.saving_id}`}
                                             className=''>
                                             {savingItem.goal_name}
                                         </Link>
