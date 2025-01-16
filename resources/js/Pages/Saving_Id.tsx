@@ -46,12 +46,10 @@ export default function SavingId() {
     }
 
     // savingsがオブジェクトでそのまま渡されている場合
-    // const saving: SavingTypes = savings;
-    //     const saving = usePage().props.SavingTypes as SavingTypes;
-//     const pageData = usePage().props;
-// console.log('pagedata:'+pageData);
 
     const savingsArray = savings ? Object.values(savings) : [];
+    // console.log(JSON.stringify('配列変換前'+savings,null,'\t'));
+    console.log(JSON.stringify('配列変換後'+savingsArray,null,'\t'));
     const saving: SavingTypes = {
         saving_id: Number(savingsArray[0]),
         user_id: Number(savingsArray[1]),
