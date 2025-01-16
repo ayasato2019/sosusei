@@ -21,7 +21,7 @@ export interface SavingTypes {
     goal_amount: number;        // 小数点を含む金額
     goal_date: string;          // 日付 (ISO 8601形式推奨)
     goal_level: number;
-    goal_images: string;       // URL形式
+    goal_images?: string | null;       // URL形式
     is_shared: boolean;
     memo?: string | null;      // memoをnullableに対応
 }

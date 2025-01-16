@@ -89,8 +89,8 @@ class SavingController extends Controller
         // dd($savings);
         return Inertia::render('Saving_Id', compact(
             'statuses',
-            '$savings',
-            'histories',
+            'savings',
+            'histories'
         ));
     }
 
