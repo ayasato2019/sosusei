@@ -54,7 +54,7 @@ class SavingController extends Controller
         // データベースに保存
         $saving->save();
 
-        return redirect()->route('home');
+        return redirect()->route('Saving_List');
     }
 
     /**

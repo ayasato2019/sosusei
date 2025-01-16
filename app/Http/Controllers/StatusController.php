@@ -26,7 +26,7 @@ class StatusController extends Controller
         // Historyデータ取得
         $histories = History::where('user_id', $id)->get()->toArray();
         // dd($savings);
-        return Inertia::render('home', compact(
+        return Inertia::render('Saving_List', compact(
             'statuses',
             'savings',
             'histories',
@@ -66,7 +66,7 @@ class StatusController extends Controller
         // データベースに保存
         $statuses->save();
 
-        return redirect()->route('home');
+        return redirect()->route('Saving_List');
     }
 
     /**
