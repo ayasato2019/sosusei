@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('comment_id')->nullable()->change();
             $table->unsignedBigInteger('goal_group_id')->default(1); // 初期値1
             $table->string('goal_name');
-            $table->decimal('goal_amount', 15, 2); // 金額は通常小数点を含む
+            $table->integer('goal_amount'); // 金額は通常小数点を含む
             $table->date('goal_date');
             $table->unsignedInteger('goal_level'); // 数値フィールド
             $table->string('goal_images');

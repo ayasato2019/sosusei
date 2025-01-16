@@ -73,7 +73,6 @@ class SavingController extends Controller
 
         // Historyデータ取得
         $histories = History::where('user_id', $userId)->get()->toArray();
-dd($savings);
         // dd($histories);
         return Inertia::render('Saving_Id', compact(
             'statuses',

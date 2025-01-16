@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('comment_id')->nullable();
             $table->unsignedBigInteger('goal_group_id')->default(1); // 初期値1
             $table->integer('category')->default(1); // 一旦は全て貯金カテゴリ
-            $table->decimal('amount_saved', 15, 2); // 金額は通常小数点を含む
+            $table->integer('amount_saved'); // 金額は通常小数点を含む
             $table->date('date_saved'); // 貯金した日
             $table->string('memo_images')->nullable(); //レシートとか
             $table->boolean('is_shared')->default(false); // デフォルトはfalse
