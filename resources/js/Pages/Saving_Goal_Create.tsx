@@ -99,7 +99,6 @@ export default function Saving_Goal_Create({
                                         <InputText
                                             name='memo'
                                             value={formData.memo}
-                                            accept=".png,.jpg,.jpeg,.webp"
                                             onChange={(e) => handleChange('memo', e.target.value)}
                                             className="w-full mt-1 text-black placeholder:italic placeholder:text-darkgray focus:outline-2 focus:outline-purple"
                                         />
