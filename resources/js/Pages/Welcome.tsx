@@ -37,7 +37,7 @@ export default function Welcome({
                 <div className='contents_box overflow-auto flex flex-col gap-5 pb-5 w-full md:max-w-[64vmin] h-screen md:border-solid border-0 md:border-8 md:border-black md:rounded-2xl '>
 
                     <div className="flex flex-col gap-8">
-                        <form method='POST' action='/confirm'>
+                        <form method='POST' action='./confirm'>
                             <input type="hidden" name="_token" value={csrfToken.current} />
                             <div className="flex flex-col gap-5 p-5">
                                 <TitleModal title="いま もってる きんがくを とうろくしよう" />

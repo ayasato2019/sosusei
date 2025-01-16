@@ -40,7 +40,7 @@ export default function Saving_Goal_Create({
                 <div className='contents_box overflow-auto flex flex-col gap-5 pb-5 w-full md:max-w-[64vmin] h-screen md:border-solid border-0 md:border-8 md:border-black md:rounded-2xl '>
 
                     <div className="flex flex-col gap-8">
-                        <form method='POST' action='/goal-confirm'>
+                        <form method='POST' action='./goal-confirm'>
                             <input type="hidden" name="_token" value={csrfToken.current} />
                             <input type="hidden" name="goal_level" value={1} />
                             <div className="flex flex-col gap-5 p-5">

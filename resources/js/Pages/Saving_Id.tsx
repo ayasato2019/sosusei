@@ -154,7 +154,7 @@ const calculateTotalSavings = (savingsId: number, histories: HistoryTypes[], goa
                                         title={saving.goal_name}
                                     />
                                 ) : ''}
-                                <form action="/update" method='POST'>
+                                <form action="./update" method='POST'>
                                     <input type="hidden" name="_token" value={csrfToken.current} />
                                     <input type="hidden" name="user_id" value={user.id} />
                                     <input type="hidden" name="category" value={1} />
