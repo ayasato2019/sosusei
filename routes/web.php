@@ -44,8 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/goal-registration', [SavingController::class, 'create'])->name('Saving_Goal_Create');
     Route::post('/goal-confirm', [SavingController::class, 'store'])->name('goal-confirm');
     //ユーザーページ
-    Route::get('/userpage', [StatusController::class, 'index'])
-    ->middleware(['auth', 'verified'])->name('Saving_List');
+    Route::get('/userpage', [StatusController::class, 'index'])->name('home')
+    ->middleware(['auth', 'verified']);
     //詳細ぺーじ
     Route::get('/{id}', [SavingController::class, 'show'])->name('saving.show');
     Route::post('/update', [HistoryController::class, 'store'])->name('update');
