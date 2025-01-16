@@ -24,7 +24,6 @@ export default function InputButtons({
     // priceの変更をハンドリング
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newPrice = Number(e.target.value);
-        console.log("Price changed:", newPrice); // デバッグ用
         setPrice(newPrice);
         onChange(newPrice);
     };

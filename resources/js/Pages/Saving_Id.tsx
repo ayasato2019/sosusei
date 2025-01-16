@@ -82,9 +82,9 @@ export default function SavingId() {
 // 積立額の計算
 const calculateTotalSavings = (savingsId: number, histories: HistoryTypes[], goalGroupId: number): number => {
     return histories
-    .filter((history) => history.goal_group_id === savingsId) // goal_group_id でフィルタリング
-    .map((history) => parseFloat(String(history.amount_saved))) // amount_saved を数値に変換
-    .reduce((total, amount) => total + amount, 0); // 合計を計算
+        .filter((history) => history.goal_group_id === savingsId) // goal_group_id でフィルタリング
+        .map((history) => parseFloat(String(history.amount_saved))) // amount_saved を数値に変換
+        .reduce((total, amount) => total + amount, 0); // 合計を計算
 };
 
     // 必要なstateとuseEffectの配置
@@ -158,8 +158,9 @@ const calculateTotalSavings = (savingsId: number, histories: HistoryTypes[], goa
                                     <input type="hidden" name="_token" value={csrfToken.current} />
                                     <input type="hidden" name="user_id" value={user.id} />
                                     <input type="hidden" name="category" value={1} />
-                                    <input type="hidden" name="saving_id" value={saving.saving_id} />
+                                    <input type="hidden" name="goal_group_id" value={saving.saving_id} />
                                     <input type="hidden" name="date_saved" value={today} />
+                                    <input type="hidden" name="saving_id" value={saving.saving_id} />
 
                                     <div className='relative w-full h-auto mt-2'>
                                         <StatusBar
