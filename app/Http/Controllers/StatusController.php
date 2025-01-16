@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreStatusRequest;
 use App\Http\Requests\UpdateStatusRequest;
 use App\Models\Status;
+use App\Models\Saving;
+use App\Models\History;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,9 +20,16 @@ class StatusController extends Controller
         // 現在認証しているユーザーのIDを取得
         $id = Auth::id();
         // user_idをキーにした連想配列に変換
-        $statuses = Status::where('user_id', $id)->get()->keyBy('user_id');        // dd($statuses);
+        $statuses = Status::where('user_id', $id)->get()->keyBy('user_id');
+        // Savingデータ取得
+        $savings = Saving::where('user_id', $id)->get()->keyBy('user_id');
+        // Historyデータ取得
+        $histories = History::where('user_id', $id)->get()->keyBy('user_id');
+        // dd($statuses);
         return Inertia::render('Saving_List', compact(
             'statuses',
+            'savings',
+            'histories',
             'id'
         ));
     }

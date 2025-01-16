@@ -8,36 +8,62 @@ import ListSavings from '@/Components/ListSaving';
 import TopSaving from '@/Ui/TopSaving'
 
 // 型チェック
-import { UserTypes } from '@/types/tableUserData'
 import { StatusTypes } from '@/types/tableStatusData'
 import { HistoryTypes } from '@/types/tableHistoryData'
 import { SavingTypes } from '@/types/tableSavingData'
 
 export default function Saving_List() {
     const user = usePage().props.auth.user;
-    const $userData = usePage().props as {
-        $userData?: string[],
-    };
+    // const $userData = usePage().props as {
+    //     $userData?: string[],
+    // };
+    const userId = user.id;
+
+    //ステータスの確認
     const { statuses } = usePage().props as {
         statuses?: StatusTypes[],
     };
-
     const status = statuses?.[user.id] ?? null;
 
-    if (!status) {
+    // 貯金目標の確認
+    const { savings } = usePage().props as {
+        savings?: SavingTypes[],
+    };
+    const saving = savings?.[user.id] ?? null;
+
+    // 履歴の確認
+    const { histories } = usePage().props as {
+        histories?: HistoryTypes[],
+    };
+    const history = histories?.[user.id] ?? null;
+    // もしも履歴がゼロだったら
+    // let history: HistoryTypes[] = histories?.[user.id] ?? [];
+
+    // 情報がない時はすぐ確認できる
+    if (!status || !saving || !savings) {
         return (
             <div>
                 <p>ステータスが見つかりません。</p>
             </div>
         );
     }
+
+    // ユーザー情報の宣言
     const userSaving: number = status.saving;
     const userInvestment: number = status.investment;
     const userEssential: number = status.essential;
     const userExtravagance: number = status.extravagance;
     const userDonation: number = status.donation;
 
-    // const userAvatar = user?.avatar || noImageAvatar;    // const savingsCount = savings.filter((item: any) => item.goal_level === 1).length;
+    //Objectをカウントする時の式
+    const savingsCount: number = Object.keys(savings).length;
+    const historiesCount: number = Object.keys(histories ?? {}).length;
+
+    // console.log("histories", JSON.stringify(histories, null, 2));
+    // console.log("history", JSON.stringify(history, null, 2));
+
+    // const userAvatar = user?.avatar || noImageAvatar;
+    // // const savingsCount = savings.filter((item: any) => item.goal_level === 1).length;
     // // const filteredItems = history.filter((item) => item.category === 2);
     // // // const investmentTotal = filteredItems.reduce((total, item) => total + (item.amount_saved || 0), 0);
 
@@ -94,20 +120,20 @@ export default function Saving_List() {
             <Head title="ユーザーぺーじ" />
             <div className='overflow-hidden flex items-center justify-center w-full h-full'>
                 <div className='contents_box overflow-auto flex flex-col gap-5 pb-5 w-full md:max-w-[64vmin] h-screen md:border-solid border-0 md:border-8 md:border-black md:rounded-2xl '>
-
                     <div className="flex flex-col gap-8">
                         <FarstView
                             UserData={userDataAfter}
                             category={0}
                             fvImages={userAvatar} />
                         <section className='py-5 md:py-10 px-2'>
-                            <TitleSection category='Savings' num={1} />
-                            {/* <TopSaving
-                            num={savingsCount}
-                            listData={savings}
-                            historyData={history}
-                            childPage={false}
-                        /> */}
+                            {saving.goal_name}
+                            <TitleSection category='Savings' num={savingsCount} />
+                            <TopSaving
+                                num={savingsCount}
+                                listData={savings}
+                                historyData={history}
+                                childPage={false}
+                            />
                             <Link
                                 href="/goal-registration"
                                 className='flex items-center justify-center rounded-md border border-transparent bg-gradation min-w-32 max-w-52 px-4 py-2 max-h-10 text-sm font-bold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gradation-blue focus:bg-gradation focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 active:bg-gradation icon-plus mx-auto mt-5 gap-2'>
