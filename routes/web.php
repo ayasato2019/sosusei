@@ -18,10 +18,6 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware('guest')->group(function () {
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
-});
-
 //初期ステータスの登録
 Route::middleware('auth')->group(function () {
     Route::get('/registration', [StatusController::class, 'create'])->name('create');
