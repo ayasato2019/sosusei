@@ -108,6 +108,23 @@ const calculateTotalSavings = (savingsId: number, histories: HistoryTypes[], goa
         setStatusBarAmount(updatedAmount);
     };
 
+    const donationTotal = userDonation;
+    // const donationTotal = history
+    //     .filter((item) => item.category === 5)
+    //     .reduce((total, item) => total + (item.amount_saved || 0), 0);
+    let donationLavel: number = donationTotal
+    if (donationTotal < 1000) {
+        donationLavel = 1;
+    } else if (donationLavel < 2000) {
+        donationLavel = 2;
+    } else if (donationLavel < 3000) {
+        donationLavel = 3;
+    } else if (donationLavel < 4000) {
+        donationLavel = 4;
+    } else if (donationLavel < 5000) {
+        donationLavel = 5;
+    }
+
     const userDataAfter = {
         id: user.id,
         name: user.name,
@@ -116,7 +133,7 @@ const calculateTotalSavings = (savingsId: number, histories: HistoryTypes[], goa
         essential: userEssential,
         extravagance: userExtravagance,
         planned_extravagance: userDonation,
-        level: 0,
+        level: donationLavel,
         donation: userDonation,
         avatar: "https://borderlesss.sakura.ne.jp/ss1/assets/images/photo-noimages.jpg",
     };

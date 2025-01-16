@@ -55,6 +55,23 @@ export default function Saving_List() {
     const savingsCount: number = savings.length;
     const historiesCount: number = histories.length;
 
+    const donationTotal = userDonation;
+    // const donationTotal = history
+    //     .filter((item) => item.category === 5)
+    //     .reduce((total, item) => total + (item.amount_saved || 0), 0);
+    let donationLavel: number = donationTotal
+    if (donationTotal < 1000) {
+        donationLavel = 1;
+    } else if (donationLavel < 2000) {
+        donationLavel = 2;
+    } else if (donationLavel < 3000) {
+        donationLavel = 3;
+    } else if (donationLavel < 4000) {
+        donationLavel = 4;
+    } else if (donationLavel < 5000) {
+        donationLavel = 5;
+    }
+
     const userDataAfter = {
         id: user.id,
         name: user.name,
@@ -63,7 +80,7 @@ export default function Saving_List() {
         essential: userEssential,
         extravagance: userExtravagance,
         planned_extravagance: userDonation,
-        level: 0,
+        level: donationLavel,
         donation: userDonation,
         avatar: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-Y7rgTcW5NdDkxvwMW4Gdj2Q3G3lZVBvHHC10A3T_Iwxj0257NbTbdhvWKFOqn7nxXw6-V4P_0VFuJZ_5cQSDPxlazFKTD9N-d1A0IrX0k7LoaVpG3X9IwQ48H0zfXTJOT1JntRr0Lq3o/s400/onepiece01_luffy.png",
     };
