@@ -4,7 +4,7 @@ interface InputPriceProps extends InputHTMLAttributes<HTMLInputElement> {
     value?: number;        // valueをnumber型に変更
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;  // onChangeを受け取る
     className?: string;   // classNameを任意に指定
-    name: string;
+    name?: string;
 }
 
 export default function InputPrice({
@@ -14,15 +14,6 @@ export default function InputPrice({
     className = '',
     ...props
 }: InputPriceProps) {
-    // const handleIncrease = () => {
-    //     const newPrice = (value ?? 0) + 100;
-    //     onChange({ target: { value: newPrice.toString() } } as React.ChangeEvent<HTMLInputElement>);
-    // };
-
-    // const handleDecrease = () => {
-    //     const newPrice = Math.max(0, (value ?? 0) - 100);
-    //     onChange({ target: { value: newPrice.toString() } } as React.ChangeEvent<HTMLInputElement>);
-    // };
 
     const handleIncrease = () => {
         const newPrice = (Number(value) || 0) + 100; // valueを数値に変換してから加算

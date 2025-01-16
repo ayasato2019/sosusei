@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, useState } from 'react';
 
 export default function ButtonSecondary({
-    type = 'button',
+    type = 'submit',
     className = '',
     disabled,
     ...props

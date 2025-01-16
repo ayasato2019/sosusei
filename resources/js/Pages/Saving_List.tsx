@@ -14,10 +14,6 @@ import { SavingTypes } from '@/types/tableSavingData'
 
 export default function Saving_List() {
     const user = usePage().props.auth.user;
-    // const $userData = usePage().props as {
-    //     $userData?: string[],
-    // };
-    const userId = user.id;
 
     //ステータスの確認
     const { statuses } = usePage().props as {
@@ -57,47 +53,6 @@ export default function Saving_List() {
     //Objectをカウントする時の式
     const savingsCount: number = savings.length;
     const historiesCount: number = histories.length;
-
-    // console.log("history", JSON.stringify(history, null, 2));
-
-    // const userAvatar = user?.avatar || noImageAvatar;
-    // // const savingsCount = savings.filter((item: any) => item.goal_level === 1).length;
-    // // const filteredItems = history.filter((item) => item.category === 2);
-    // // // const investmentTotal = filteredItems.reduce((total, item) => total + (item.amount_saved || 0), 0);
-
-    // // category 1 のデータを抽出し、amount_saved の合計を計算
-    // const savingsTotal = history
-    //     .filter((item) => item.category === 1)
-    //     .reduce((total, item) => total + (item.amount_saved || 0), 0);
-
-    // const investmentTotal = history
-    //     .filter((item) => item.category === 2)
-    //     .reduce((total, item) => total + (item.amount_saved || 0), 0);
-
-    // const essentialTotal = history
-    //     .filter((item) => item.category === 3)
-    //     .reduce((total, item) => total + (item.amount_saved || 0), 0);
-
-    // const extravagancelTotal = history
-    //     .filter((item) => item.category === 4)
-    //     .reduce((total, item) => total + (item.amount_saved || 0), 0);
-
-    // const donationTotal = history
-    //     .filter((item) => item.category === 5)
-    //     .reduce((total, item) => total + (item.amount_saved || 0), 0);
-
-    // let donationLavel:number = donationTotal
-    // if (donationTotal < 1000) {
-    //     donationLavel = 1;
-    // } else if (donationLavel < 2000) {
-    //     donationLavel = 2;
-    // } else if (donationLavel < 3000) {
-    //     donationLavel = 3;
-    // } else if (donationLavel < 4000) {
-    //     donationLavel = 4;
-    // } else if (donationLavel < 5000) {
-    //     donationLavel = 5;
-    // }
 
     const userDataAfter = {
         id: user.id,

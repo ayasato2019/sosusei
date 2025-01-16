@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreHistoryRequest;
 use App\Http\Requests\UpdateHistoryRequest;
 use App\Models\History;
+use App\Models\Saving;
 
 class HistoryController extends Controller
 {
@@ -25,11 +26,33 @@ class HistoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * マイページで貯金をした時
      */
     public function store(StoreHistoryRequest $request)
     {
-        //
+        // バリデーション
+        $validated = $request->validate([
+            'user_id' => 'required|integer',
+            'category' => 'required|integer',
+            'goal_group_id' => 'required|integer',
+            'date_saved' => 'required|date', // date_savedは必須で日付形式であること
+            'amount_saved' => 'required|numeric',
+        ]);
+
+        // 新しい履歴を作成
+        $history = new History();
+        $history->user_id = $request->user_id;
+        $history->category = $request->category;
+        $history->goal_group_id = $request->goal_group_id;
+        $history->amount_saved = $request->amount_saved;
+        $history->date_saved = $request->date_saved;
+        $history->memo = $request->memo ?? null; // メモがあれば保存
+        $history->is_shared = $request->is_shared ?? false; // 共有設定があれば保存
+        $history->created_at = now(); // 作成日時をセット
+        $history->save(); // 履歴を保存
+        dd($history);
+        // 成功したらリダイレクト
+        return redirect()->route('Saving_Id')->with('success', '履歴が登録されました。');
     }
 
     /**

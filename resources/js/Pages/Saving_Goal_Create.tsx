@@ -43,7 +43,6 @@ export default function Saving_Goal_Create({
                         <form method='POST' action='/goal-confirm'>
                             <input type="hidden" name="_token" value={csrfToken.current} />
                             <input type="hidden" name="goal_level" value={1} />
-                            <input type="hidden" name="goal_level" value={1} />
                             <div className="flex flex-col gap-5 p-5">
                                 <TitleModal title="もくひょうを 立てよう！" />
                                 <div>

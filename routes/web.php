@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\SavingController;
+use App\Http\Controllers\HistoryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -40,7 +41,10 @@ Route::middleware('auth')->group(function () {
 });
 
 //詳細ぺーじ
-Route::get('/{id}', [SavingController::class, 'show'])->name('saving.show');
+Route::middleware('auth')->group(function () {
+    Route::get('/{id}', [SavingController::class, 'show'])->name('saving.show');
+    Route::post('/update', [HistoryController::class, 'store'])->name('update');
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
