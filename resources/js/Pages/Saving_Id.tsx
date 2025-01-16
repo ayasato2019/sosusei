@@ -45,18 +45,18 @@ export default function SavingId() {
         savings?: SavingTypes[],
     };
     const savingsArray = savings ? Object.values(savings) : [];
-    const saving = {
-        saving_id: savingsArray[0],
-        user_id: savingsArray[1],
-        comment_id: savingsArray[2],
-        goal_group_id: savingsArray[3],
-        goal_name: savingsArray[4],
-        goal_amount: savingsArray[5],
-        goal_date: savingsArray[6],
-        goal_level: savingsArray[7],
-        goal_images: savingsArray[8],
-        is_shared: savingsArray[9],
-        memo: savingsArray[10],
+    const saving: SavingTypes = {
+        saving_id: Number(savingsArray[0]),
+        user_id: Number(savingsArray[1]),
+        comment_id: Number(savingsArray[2]),
+        goal_group_id: Number(savingsArray[3]),
+        goal_name: String(savingsArray[4]),
+        goal_amount: Number(savingsArray[5]),
+        goal_date: String(savingsArray[6]),
+        goal_level: Number(savingsArray[7]),
+        goal_images: String(savingsArray[8]),
+        is_shared: Boolean(savingsArray[9]),
+        memo: String(savingsArray[10]),
     };
 
     // 履歴の確認
@@ -73,6 +73,7 @@ export default function SavingId() {
             </div>
         );
     }
+    console.log("savingsArray:", savingsArray);
     console.log("goal_group_idの型:", typeof saving.goal_group_id);
 
     // const history = histories.filter((history) => history.user_id === user.id);
