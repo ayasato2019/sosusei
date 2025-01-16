@@ -29,24 +29,23 @@ export default function Saving_List() {
     const { savings } = usePage().props as {
         savings?: SavingTypes[],
     };
-    const saving = savings?.[user.id] ?? null;
 
     // 履歴の確認
     const { histories } = usePage().props as {
         histories?: HistoryTypes[],
     };
-    const history = histories?.[user.id] ?? null;
-    // もしも履歴がゼロだったら
-    // let history: HistoryTypes[] = histories?.[user.id] ?? [];
 
-    // 情報がない時はすぐ確認できる
-    if (!status || !saving || !savings) {
+    if (!status || !savings || !histories) {
         return (
             <div>
                 <p>ステータスが見つかりません。</p>
             </div>
         );
     }
+
+    const saving = savings.filter((saving) => saving.user_id === user.id);
+    const history = histories.filter((history) => history.user_id === user.id);
+    // もしも履歴がゼロだったら
 
     // ユーザー情報の宣言
     const userSaving: number = status.saving;
@@ -56,10 +55,9 @@ export default function Saving_List() {
     const userDonation: number = status.donation;
 
     //Objectをカウントする時の式
-    const savingsCount: number = Object.keys(savings).length;
-    const historiesCount: number = Object.keys(histories ?? {}).length;
+    const savingsCount: number = savings.length;
+    const historiesCount: number = histories.length;
 
-    // console.log("histories", JSON.stringify(histories, null, 2));
     // console.log("history", JSON.stringify(history, null, 2));
 
     // const userAvatar = user?.avatar || noImageAvatar;
@@ -117,7 +115,7 @@ export default function Saving_List() {
 
     return (
         <>
-            <Head title="ユーザーぺーじ" />
+            <Head title="貯金一覧" />
             <div className='overflow-hidden flex items-center justify-center w-full h-full'>
                 <div className='contents_box overflow-auto flex flex-col gap-5 pb-5 w-full md:max-w-[64vmin] h-screen md:border-solid border-0 md:border-8 md:border-black md:rounded-2xl '>
                     <div className="flex flex-col gap-8">
@@ -126,14 +124,30 @@ export default function Saving_List() {
                             category={0}
                             fvImages={userAvatar} />
                         <section className='py-5 md:py-10 px-2'>
-                            {saving.goal_name}
                             <TitleSection category='Savings' num={savingsCount} />
-                            <TopSaving
+                            {/* <TopSaving
                                 num={savingsCount}
                                 listData={savings}
                                 historyData={history}
                                 childPage={false}
-                            />
+                            /> */}
+                            {
+                                savings.map((savingItem) => (
+                                    <div key={savingItem.saving_id} className='mt-5'>
+                                        <Link href={`/${savingItem.saving_id}`}>
+                                            {savingItem.goal_name}
+                                        </Link>
+                                        {historiesCount > 0 && (
+                                            <ul>
+                                                <li>最新貯金履歴</li>
+                                                <li>貯金回数{historiesCount}回！がんばれ！</li>
+                                                {/* <li>貯金額: {history.amount_saved}円</li> */}
+                                            </ul>
+                                        )}
+                                    </div>
+                                ))
+                            }
+
                             <Link
                                 href="/goal-registration"
                                 className='flex items-center justify-center rounded-md border border-transparent bg-gradation min-w-32 max-w-52 px-4 py-2 max-h-10 text-sm font-bold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gradation-blue focus:bg-gradation focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 active:bg-gradation icon-plus mx-auto mt-5 gap-2'>

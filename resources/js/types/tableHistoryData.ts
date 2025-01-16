@@ -1,4 +1,4 @@
-export type HistoryTypes = {
+export interface HistoryTypes {
     history_id: number;
     user_id: number;
     comment_id?: number | null;

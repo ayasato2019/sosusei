@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSavingRequest;
 use App\Http\Requests\UpdateSavingRequest;
 use App\Models\Saving;
+use App\Models\Status;
+use App\Models\History;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,9 +59,27 @@ class SavingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Saving $saving)
+    public function show(Saving $id)
     {
-        //
+        // 現在認証しているユーザーのIDを取得
+        $userId = Auth::id();
+
+        // user_idをキーにした連想配列に変換
+        $statuses = Status::where('user_id', $userId)->get()->keyBy('user_id');
+
+        // Savingデータ取得
+        $savings = $id;
+
+        // Historyデータ取得
+        // $histories = History::where('user_id', $userId)->where('user_id', $userId)->get()->keyBy('user_id');
+        $histories = History::where('user_id', $userId)->get()->toArray();
+
+        // dd($pageId);
+        return Inertia::render('Saving_Id', compact(
+            'statuses',
+            'savings',
+            'histories',
+        ));
     }
 
     /**

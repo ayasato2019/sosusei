@@ -23,7 +23,7 @@ export default function TitleSavings({
 
     return (
         <div className={`relative flex flex-nowrap items-center justify-center gap-1 w-auto `+ className }>
-            <span className={`inline-flex items-center justify-center px-1 py-1 text-${typeClass} border-2 border-${typeClass} leading-none font-bold text-sm rounded-sm dark:bg-black/95`}>{displayText}</span>
+            {/* <span className={`inline-flex items-center justify-center px-1 py-1 text-${typeClass} border-2 border-${typeClass} leading-none font-bold text-sm rounded-sm dark:bg-black/95`}>{displayText}</span> */}
             <h3
                 className={
                     'inline-block py-1 w-auto text-lg font-bold leading-none focus:outline-none ' +

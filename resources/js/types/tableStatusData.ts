@@ -1,4 +1,4 @@
-export type StatusTypes = {
+export interface StatusTypes {
     id: number,
     user_id: number,
     updated_at: string,

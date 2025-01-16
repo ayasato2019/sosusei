@@ -10,12 +10,12 @@ import Modal from '@/Components/Modal';
 export default function TopSaving({
     listData,
     num,
-    historyData,
+    historyData = [],
 }: {
     listData: SavingTypes[];
     num: number;
     childPage: boolean,
-    historyData: HistoryTypes[];
+    historyData?: HistoryTypes[];
 }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleOpenModal = () => setIsModalOpen(true);

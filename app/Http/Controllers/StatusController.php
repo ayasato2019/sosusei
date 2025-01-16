@@ -22,10 +22,10 @@ class StatusController extends Controller
         // user_idをキーにした連想配列に変換
         $statuses = Status::where('user_id', $id)->get()->keyBy('user_id');
         // Savingデータ取得
-        $savings = Saving::where('user_id', $id)->get()->keyBy('user_id');
+        $savings = Saving::where('user_id', $id)->get()->toArray();
         // Historyデータ取得
-        $histories = History::where('user_id', $id)->get()->keyBy('user_id');
-        // dd($statuses);
+        $histories = History::where('user_id', $id)->get()->toArray();
+        // dd($savings);
         return Inertia::render('Saving_List', compact(
             'statuses',
             'savings',

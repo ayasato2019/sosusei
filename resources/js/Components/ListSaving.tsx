@@ -16,14 +16,14 @@ const noImagePng:string ='https://borderlesss.sakura.ne.jp/ss1/assets/images/ava
 // ListCheckBox コンポーネントの定義
 export default function ListCheckBox({
     listData,
-    historyData,
+    historyData = [],
     childPage,
     // type,
     className = '',
     ...props
 }: {
     listData: SavingTypes[];
-    historyData: HistoryTypes[];
+    historyData?: HistoryTypes[];
     childPage?: boolean;
     className?: string;
     // type: number
