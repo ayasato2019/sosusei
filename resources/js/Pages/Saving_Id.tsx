@@ -8,7 +8,6 @@ import FarstView from '@/Ui/FarstViewAvatar';
 import { openToggle } from '@/Functions/openToggle';
 // 型チェック
 import { StatusTypes } from '@/types/tableStatusData'
-// import { HistoryTypes } from '@/types/tableHistoryData'
 import { SavingTypes } from '@/types/tableSavingData'
 
 interface HistoryTypes {
@@ -35,8 +34,23 @@ export default function SavingId() {
 
     // 貯金目標の確認
     const { savings } = usePage().props as {
-        savings?: SavingTypes[],
+        savings?: SavingTypes,
     };
+
+    if (!savings) {
+        return (
+            <div>
+                <p>データが見つかりません。</p>
+            </div>
+        );
+    }
+
+    // savingsがオブジェクトでそのまま渡されている場合
+    // const saving: SavingTypes = savings;
+    //     const saving = usePage().props.SavingTypes as SavingTypes;
+//     const pageData = usePage().props;
+// console.log('pagedata:'+pageData);
+
     const savingsArray = savings ? Object.values(savings) : [];
     const saving: SavingTypes = {
         saving_id: Number(savingsArray[0]),
@@ -58,7 +72,7 @@ export default function SavingId() {
     };
 
     // 情報がない時はすぐ確認できる
-    if (!status || !savings || !histories || !saving) {
+    if (!status || !histories || !saving) {
         return (
             <div>
                 <p>ステータスが見つかりません。</p>

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedInteger('goal_level'); // 数値フィールド
             $table->string('goal_images');
             $table->boolean('is_shared')->default(false); // デフォルトはfalse
+            $table->unsignedBigInteger('comment_id')->nullable()->change();  // comment_idをnullableに変更
             $table->text('memo')->nullable(); // 任意のメモフィールド
             $table->timestamps();
         });
