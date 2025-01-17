@@ -174,8 +174,8 @@ export default function SavingId() {
     // タイトルクリックで開閉を管理するための状態
     const { openIndexes, handleToggle } = openToggle();
     // 時間の修正
-    const date = saving.goal_date;
-    const formattedDate = date.toString().split('T')[0];
+    const date = new Date(saving.goal_date);  // 日付文字列をDateオブジェクトに変換
+    const formattedDate = date.toISOString().split('T')[0];  // ISO形式で取り出して、Tの前（年月日）だけ取得
 
     //送信関係
     const metaCsrfToken = document.querySelector("meta[name='csrf-token']") as HTMLMetaElement;
