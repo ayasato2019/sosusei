@@ -73,6 +73,16 @@ export default function SavingId() {
         is_shared: savingsArray[9],
         memo: savingsArray[10],
     };
+    console.log("saving.saving_id->" + saving.saving_id);
+    console.log("saving.user_id->" + saving.user_id);
+    console.log("saving.comment_id->" + saving.comment_id);
+    console.log("saving.goal_group_id->" + saving.goal_group_id);
+    console.log("saving.goal_name->" + saving.goal_name);
+    console.log("saving.goal_amount->" + saving.goal_amount);
+    console.log("saving.goal_level->" + saving.goal_level);
+    console.log("saving.goal_images->" + saving.goal_images);
+    console.log("saving.is_shared->" + saving.is_shared);
+    console.log("saving.memo->" + saving.memo);
 
     // 履歴の確認
     const { histories } = usePage().props as {
