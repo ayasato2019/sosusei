@@ -38,7 +38,7 @@ export default function UserStatus({
                 ></UserStatusName>
                 <div
                     onClick={handleOpen}
-                    onTouchStart={handleOpen}
+                    // onTouchStart={handleOpen}
                     className={`absolute right-0 w-1/2 flex items-stert justify-end transition-all duration-300 ${isOpen ? 'top-0' : 'top-[-60px]'
                     }`}>
                     <UserStatusAmount
