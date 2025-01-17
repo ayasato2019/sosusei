@@ -197,12 +197,13 @@ export default function SavingId() {
                         <li>
                             <div>
                                 <p className='text-sm font-semibold'>{formattedDate}</p>
-                                {/* {saving.goal_level === 1 ? ( */}
                                 <TitleSavings
                                     type={1}
                                     title={saving.goal_name}
-                                />
-                                {/* // ) : ''} */}
+                                    />
+                                    {saving.memo !== null ? (
+                                        <p className="my-4 text-center text-sm"><span className='inline-block bg-slate-600 text-white rounded-2xl py-0 px-2 mr-1 font-bold'>メモ</span>{saving.memo}</p>
+                                ) : ''}
                                 <form action="./update" method='POST'>
                                     <input type="hidden" name="_token" value={csrfToken.current} />
                                     <input type="hidden" name="user_id" value={user.id} />
