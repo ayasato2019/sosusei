@@ -59,7 +59,6 @@ export default function SavingId() {
         is_shared: boolean;
         memo?: string | null;
     }
-    // const saving: SavingTypes = savings ? Object.values(savings) : [];
     const savingsArray = Object.values(savings);
     const saving: SavingType = {
         saving_id: savingsArray[0],
@@ -74,7 +73,6 @@ export default function SavingId() {
         is_shared: savingsArray[9],
         memo: savingsArray[10],
     };
-    console.log('配列変換後', JSON.stringify(saving, null, 2));
 
     // 履歴の確認
     const { histories } = usePage().props as {
@@ -97,12 +95,6 @@ export default function SavingId() {
     const userExtravagance: number = status.extravagance;
     const userDonation: number = status.donation;
 
-    // // 積立額の計算
-    // const calculateTotalSavings = (savingsId: number, history: HistoryTypes[], goalLevel: number): number => {
-    //     return histories
-    //         .map((history) => parseFloat(String(history.amount_saved)))
-    //         .reduce((total, amount) => total + amount, 0);
-    // };
 // 積立額の計算
 const calculateTotalSavings = (savingsId: number, histories: HistoryTypes[], goalGroupId: number): number => {
     return histories
@@ -133,9 +125,6 @@ const calculateTotalSavings = (savingsId: number, histories: HistoryTypes[], goa
     };
 
     const donationTotal = userDonation;
-    // const donationTotal = history
-    //     .filter((item) => item.category === 5)
-    //     .reduce((total, item) => total + (item.amount_saved || 0), 0);
     let donationLavel: number = donationTotal
     if (donationTotal < 1000) {
         donationLavel = 1;
@@ -188,13 +177,13 @@ const calculateTotalSavings = (savingsId: number, histories: HistoryTypes[], goa
                     <ul className='px-4'>
                         <li>
                             <div>
-                                <p className='text-sm font-semibold'>{formattedDate}</p>
-                                {saving.goal_level === 1 ? (
+                                <p className='text-sm font-semibold'>{today}</p>
+                                {/* {saving.goal_level === 1 ? ( */}
                                     <TitleSavings
                                         type={1}
                                         title={saving.goal_name}
                                     />
-                                ) : ''}
+                                {/* // ) : ''} */}
                                 <form action="./update" method='POST'>
                                     <input type="hidden" name="_token" value={csrfToken.current} />
                                     <input type="hidden" name="user_id" value={user.id} />
