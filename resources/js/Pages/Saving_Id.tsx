@@ -46,23 +46,35 @@ export default function SavingId() {
     }
 
     // savingsがオブジェクトでそのまま渡されている場合
-
-    const savingsArray = savings ? Object.values(savings) : [];
-    console.log(JSON.stringify('配列変換後'+savingsArray,null,'\t'));
-    const saving: SavingTypes = {
-        saving_id: Number(savingsArray[0]),
-        user_id: Number(savingsArray[1]),
-        comment_id: Number(savingsArray[2]),
-        goal_group_id: Number(savingsArray[3]),
-        goal_name: String(savingsArray[4]),
-        goal_amount: Number(savingsArray[5]),
-        goal_date: String(savingsArray[6]),
-        goal_level: Number(savingsArray[7]),
-        goal_images: String(savingsArray[8]),
-        is_shared: Boolean(savingsArray[9]),
-        memo: String(savingsArray[10]),
+    type SavingType = {
+        saving_id: number;
+        user_id: number;
+        comment_id: number | null;  // nullable対応
+        goal_group_id: number;
+        goal_name: string;
+        goal_amount: number;        // 小数点を含む金額
+        goal_date: string;          // 日付 (ISO 8601形式推奨)
+        goal_level: number;
+        goal_images?: string | null;       // URL形式
+        is_shared: boolean;
+        memo?: string | null;
+    }
+    // const saving: SavingTypes = savings ? Object.values(savings) : [];
+    const savingsArray = Object.values(savings);
+    const saving: SavingType = {
+        saving_id: savingsArray[0],
+        user_id: savingsArray[1],
+        comment_id: savingsArray[2],
+        goal_group_id: savingsArray[3],
+        goal_name: savingsArray[4],
+        goal_amount: savingsArray[5],
+        goal_date: savingsArray[6],
+        goal_level: savingsArray[7],
+        goal_images: savingsArray[8],
+        is_shared: savingsArray[9],
+        memo: savingsArray[10],
     };
-    console.log(JSON.stringify('型の再宣言'+saving,null,'\t'));
+    console.log('配列変換後', JSON.stringify(saving, null, 2));
 
     // 履歴の確認
     const { histories } = usePage().props as {
