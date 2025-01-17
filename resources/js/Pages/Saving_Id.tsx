@@ -60,18 +60,26 @@ export default function SavingId() {
         memo?: string | null;
     }
     const savingsArray = Object.values(savings);
+
+
+    // 履歴の確認
+    const { histories } = usePage().props as {
+        histories?: HistoryTypes[],
+    };
+
+
     const saving: SavingType = {
-        saving_id: savingsArray[0],
-        user_id: savingsArray[1],
-        comment_id: savingsArray[2],
-        goal_group_id: savingsArray[3],
-        goal_name: savingsArray[4],
-        goal_amount: savingsArray[5],
-        goal_date: savingsArray[6],
-        goal_level: savingsArray[7],
-        goal_images: savingsArray[8],
-        is_shared: savingsArray[9],
-        memo: savingsArray[10],
+        saving_id: savings.saving_id,
+        user_id: savings.user_id,
+        comment_id: savings.comment_id,
+        goal_group_id: savings.goal_group_id,
+        goal_name: savings.goal_name,
+        goal_amount: savings.goal_amount,
+        goal_date: savings.goal_date,
+        goal_level: savings.goal_level,
+        goal_images: savings.goal_images,
+        is_shared: savings.is_shared,
+        memo: savings.memo
     };
     console.log("saving.saving_id->" + saving.saving_id);
     console.log("saving.user_id->" + saving.user_id);
@@ -83,12 +91,6 @@ export default function SavingId() {
     console.log("saving.goal_images->" + saving.goal_images);
     console.log("saving.is_shared->" + saving.is_shared);
     console.log("saving.memo->" + saving.memo);
-
-    // 履歴の確認
-    const { histories } = usePage().props as {
-        histories?: HistoryTypes[],
-    };
-
     // 情報がない時はすぐ確認できる
     if (!status || !histories || !saving) {
         return (
@@ -97,7 +99,6 @@ export default function SavingId() {
             </div>
         );
     }
-
     // ユーザー情報の宣言
     const userSaving: number = status.saving;
     const userInvestment: number = status.investment;
